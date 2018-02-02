@@ -53,4 +53,4 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
 
 EXPOSE 9000
 
-CMD ["php-fpm"]
+CMD ["php-fpm5","-F"]
