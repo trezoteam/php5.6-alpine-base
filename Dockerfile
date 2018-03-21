@@ -1,18 +1,7 @@
-FROM alpine:edge
+FROM alpine:3.7
 
-RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-    echo '@community http://nl.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
-
-# Install specific packages
-RUN apk add --update \
-        mariadb-client \
-        imap \
-        redis \
-        imagemagick
-
-RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-    apk --update add \
-				php5 \
+RUN     apk --update add \
+	php5 \
         php5-common \
         php5-cli \
         php5-fpm \
@@ -51,6 +40,7 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
 				pcre \
     && rm -rf /var/cache/apk/*
 
-EXPOSE 9000
+RUN addgroup www-data -g 82 -S
+RUN adduser deploy -s /bin/sh -G www-data -u 2500 -D
 
 CMD ["php-fpm5","-F"]
