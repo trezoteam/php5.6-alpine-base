@@ -43,5 +43,6 @@ RUN     apk --update add \
 RUN addgroup www-data -g 82 -S
 RUN adduser www-data -s /bin/sh -G www-data -u 82 -D
 RUN adduser deploy -s /bin/sh -G www-data -u 2500 -D
+RUN ln -s /usr/bin/php5 /usr/bin/php
 
 CMD ["php-fpm5","-F"]
