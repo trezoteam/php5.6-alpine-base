@@ -41,6 +41,7 @@ RUN     apk --update add \
     && rm -rf /var/cache/apk/*
 
 RUN addgroup www-data -g 82 -S
+RUN adduser www-data -s /bin/sh -G www-data -u 82 -D
 RUN adduser deploy -s /bin/sh -G www-data -u 2500 -D
 
 CMD ["php-fpm5","-F"]
